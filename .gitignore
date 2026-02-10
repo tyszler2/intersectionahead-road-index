@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+
+# Swift / Xcode
+.build/
+.swiftpm/
+DerivedData/
+
+# Rust
+target/
+
+# Large raw data
+*.osm.pbf
+*.o5m
+
+# Temp build dirs
+tmp_*/
+
+# Tools source (not part of app repo)
+tools/
+
+# Output except published road index
+out/
+road-index/
