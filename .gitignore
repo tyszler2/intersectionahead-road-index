@@ -19,6 +19,5 @@ tmp_*/
 # Tools source (not part of app repo)
 tools/
 
-# Output except published road index
+# Output
 out/
-road-index/
