@@ -1,0 +1,67 @@
+name: Verify Road Index Data Integrity
+
+on:
+  pull_request:
+    paths:
+      - tools/**
+      - .github/workflows/**
+      - docs/CHANGELOG_DATA_APP.md
+  workflow_dispatch:
+    inputs:
+      coverage_profile:
+        description: Coverage profile to verify
+        required: true
+        default: north_america_full
+        type: choice
+        options:
+          - pilot_northeast
+          - north_america_full
+      rebuild_scope:
+        description: all or comma-separated shard IDs
+        required: true
+        default: all
+        type: string
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Syntax checks
+        run: |
+          bash -n tools/scripts/build_region.sh
+          bash -n tools/scripts/build_profile.sh
+          bash -n tools/scripts/verify_release.sh
+          bash -n tools/scripts/publish_release.sh
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build road index builder
+        run: cargo build --release --manifest-path tools/road_index_builder/Cargo.toml
+
+      - name: Build profile release
+        id: build_profile
+        run: |
+          release_dir=$(tools/scripts/build_profile.sh \
+            --profile "${{ github.event.inputs.coverage_profile || 'north_america_full' }}" \
+            --rebuild-scope "${{ github.event.inputs.rebuild_scope || 'all' }}" | tail -n1)
+          echo "release_dir=$release_dir" >> "$GITHUB_OUTPUT"
+
+      - name: Verify release
+        run: |
+          tools/scripts/verify_release.sh \
+            --release-dir "${{ steps.build_profile.outputs.release_dir }}" \
+            --profile "${{ github.event.inputs.coverage_profile || 'north_america_full' }}" \
+            --sample-decodes 3
+
+      - name: Upload verification artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: road-index-verify-${{ github.run_id }}
+          path: ${{ steps.build_profile.outputs.release_dir }}
