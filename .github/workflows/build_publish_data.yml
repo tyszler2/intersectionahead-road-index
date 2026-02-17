@@ -1,0 +1,90 @@
+name: Build and Publish Road Index Data
+
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+    inputs:
+      coverage_profile:
+        description: Coverage profile from tools/config/coverage_profiles.yaml
+        required: true
+        default: north_america_full
+        type: choice
+        options:
+          - pilot_northeast
+          - north_america_full
+      rebuild_scope:
+        description: all or comma-separated shard IDs
+        required: true
+        default: all
+        type: string
+      publish:
+        description: Publish to intersectionahead-road-index repository
+        required: true
+        default: false
+        type: boolean
+
+jobs:
+  build_publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build road index builder
+        run: cargo build --release --manifest-path tools/road_index_builder/Cargo.toml
+
+      - name: Build profile release
+        id: build_profile
+        run: |
+          release_dir=$(tools/scripts/build_profile.sh \
+            --profile "${{ github.event.inputs.coverage_profile || 'north_america_full' }}" \
+            --rebuild-scope "${{ github.event.inputs.rebuild_scope || 'all' }}" | tail -n1)
+          echo "release_dir=$release_dir" >> "$GITHUB_OUTPUT"
+
+      - name: Verify local release
+        run: |
+          tools/scripts/verify_release.sh \
+            --release-dir "${{ steps.build_profile.outputs.release_dir }}" \
+            --profile "${{ github.event.inputs.coverage_profile || 'north_america_full' }}" \
+            --sample-decodes 3
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: road-index-release-${{ github.run_id }}
+          path: ${{ steps.build_profile.outputs.release_dir }}
+
+      - name: Publish release
+        if: ${{ inputs.publish == true }}
+        env:
+          ROAD_INDEX_TOKEN: ${{ secrets.ROAD_INDEX_REPO_TOKEN }}
+        run: |
+          if [[ -z "$ROAD_INDEX_TOKEN" ]]; then
+            echo "ROAD_INDEX_REPO_TOKEN secret is required for publish"
+            exit 1
+          fi
+
+          tools/scripts/publish_release.sh \
+            --release-dir "${{ steps.build_profile.outputs.release_dir }}" \
+            --target-repo-dir /tmp/intersectionahead-road-index \
+            --target-repo-url "https://x-access-token:${ROAD_INDEX_TOKEN}@github.com/tyszler2/intersectionahead-road-index.git" \
+            --target-branch main \
+            --commit true \
+            --push true \
+            --delete true
+
+      - name: Verify remote publish headers
+        if: ${{ inputs.publish == true }}
+        run: |
+          tools/scripts/verify_release.sh \
+            --release-dir "${{ steps.build_profile.outputs.release_dir }}" \
+            --profile "${{ github.event.inputs.coverage_profile || 'north_america_full' }}" \
+            --remote-base-url "https://tyszler2.github.io/intersectionahead-road-index/road-index" \
+            --require-remote true
