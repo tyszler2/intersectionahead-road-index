@@ -1,0 +1,90 @@
+profiles:
+  pilot_northeast:
+    release_region_id: north_america
+    output_namespace: road-index
+    pack_version: 2
+    source_pbf_root: source-pbf
+    shards:
+      - nyc_tristate|nyc-tristate-merged.osm.pbf||-75.6|39.7|-71.5|42.6
+      - new_jersey|source-pbf/new-jersey-latest.osm.pbf||-75.7|38.8|-73.8|41.5
+      - greater_philadelphia|source-pbf/pennsylvania-latest.osm.pbf||-76.2|39.4|-74.2|40.7
+      - northern_delaware|source-pbf/delaware-latest.osm.pbf||-75.9|38.3|-74.8|40.1
+    seam_tiles:
+      - north_america|10|298|387
+      - north_america|10|297|388
+      - north_america|10|295|385
+
+  north_america_full:
+    release_region_id: north_america
+    output_namespace: road-index
+    pack_version: 2
+    source_pbf_root: source-pbf
+    shards:
+      - us_alabama|source-pbf/us/alabama-latest.osm.pbf|https://download.geofabrik.de/north-america/us/alabama-latest.osm.pbf|-180|-85|180|85
+      - us_alaska|source-pbf/us/alaska-latest.osm.pbf|https://download.geofabrik.de/north-america/us/alaska-latest.osm.pbf|-180|-85|180|85
+      - us_arizona|source-pbf/us/arizona-latest.osm.pbf|https://download.geofabrik.de/north-america/us/arizona-latest.osm.pbf|-180|-85|180|85
+      - us_arkansas|source-pbf/us/arkansas-latest.osm.pbf|https://download.geofabrik.de/north-america/us/arkansas-latest.osm.pbf|-180|-85|180|85
+      - us_california|source-pbf/us/california-latest.osm.pbf|https://download.geofabrik.de/north-america/us/california-latest.osm.pbf|-180|-85|180|85
+      - us_colorado|source-pbf/us/colorado-latest.osm.pbf|https://download.geofabrik.de/north-america/us/colorado-latest.osm.pbf|-180|-85|180|85
+      - us_connecticut|source-pbf/us/connecticut-latest.osm.pbf|https://download.geofabrik.de/north-america/us/connecticut-latest.osm.pbf|-180|-85|180|85
+      - us_delaware|source-pbf/us/delaware-latest.osm.pbf|https://download.geofabrik.de/north-america/us/delaware-latest.osm.pbf|-180|-85|180|85
+      - us_district_of_columbia|source-pbf/us/district-of-columbia-latest.osm.pbf|https://download.geofabrik.de/north-america/us/district-of-columbia-latest.osm.pbf|-180|-85|180|85
+      - us_florida|source-pbf/us/florida-latest.osm.pbf|https://download.geofabrik.de/north-america/us/florida-latest.osm.pbf|-180|-85|180|85
+      - us_georgia|source-pbf/us/georgia-latest.osm.pbf|https://download.geofabrik.de/north-america/us/georgia-latest.osm.pbf|-180|-85|180|85
+      - us_hawaii|source-pbf/us/hawaii-latest.osm.pbf|https://download.geofabrik.de/north-america/us/hawaii-latest.osm.pbf|-180|-85|180|85
+      - us_idaho|source-pbf/us/idaho-latest.osm.pbf|https://download.geofabrik.de/north-america/us/idaho-latest.osm.pbf|-180|-85|180|85
+      - us_illinois|source-pbf/us/illinois-latest.osm.pbf|https://download.geofabrik.de/north-america/us/illinois-latest.osm.pbf|-180|-85|180|85
+      - us_indiana|source-pbf/us/indiana-latest.osm.pbf|https://download.geofabrik.de/north-america/us/indiana-latest.osm.pbf|-180|-85|180|85
+      - us_iowa|source-pbf/us/iowa-latest.osm.pbf|https://download.geofabrik.de/north-america/us/iowa-latest.osm.pbf|-180|-85|180|85
+      - us_kansas|source-pbf/us/kansas-latest.osm.pbf|https://download.geofabrik.de/north-america/us/kansas-latest.osm.pbf|-180|-85|180|85
+      - us_kentucky|source-pbf/us/kentucky-latest.osm.pbf|https://download.geofabrik.de/north-america/us/kentucky-latest.osm.pbf|-180|-85|180|85
+      - us_louisiana|source-pbf/us/louisiana-latest.osm.pbf|https://download.geofabrik.de/north-america/us/louisiana-latest.osm.pbf|-180|-85|180|85
+      - us_maine|source-pbf/us/maine-latest.osm.pbf|https://download.geofabrik.de/north-america/us/maine-latest.osm.pbf|-180|-85|180|85
+      - us_maryland|source-pbf/us/maryland-latest.osm.pbf|https://download.geofabrik.de/north-america/us/maryland-latest.osm.pbf|-180|-85|180|85
+      - us_massachusetts|source-pbf/us/massachusetts-latest.osm.pbf|https://download.geofabrik.de/north-america/us/massachusetts-latest.osm.pbf|-180|-85|180|85
+      - us_michigan|source-pbf/us/michigan-latest.osm.pbf|https://download.geofabrik.de/north-america/us/michigan-latest.osm.pbf|-180|-85|180|85
+      - us_minnesota|source-pbf/us/minnesota-latest.osm.pbf|https://download.geofabrik.de/north-america/us/minnesota-latest.osm.pbf|-180|-85|180|85
+      - us_mississippi|source-pbf/us/mississippi-latest.osm.pbf|https://download.geofabrik.de/north-america/us/mississippi-latest.osm.pbf|-180|-85|180|85
+      - us_missouri|source-pbf/us/missouri-latest.osm.pbf|https://download.geofabrik.de/north-america/us/missouri-latest.osm.pbf|-180|-85|180|85
+      - us_montana|source-pbf/us/montana-latest.osm.pbf|https://download.geofabrik.de/north-america/us/montana-latest.osm.pbf|-180|-85|180|85
+      - us_nebraska|source-pbf/us/nebraska-latest.osm.pbf|https://download.geofabrik.de/north-america/us/nebraska-latest.osm.pbf|-180|-85|180|85
+      - us_nevada|source-pbf/us/nevada-latest.osm.pbf|https://download.geofabrik.de/north-america/us/nevada-latest.osm.pbf|-180|-85|180|85
+      - us_new_hampshire|source-pbf/us/new-hampshire-latest.osm.pbf|https://download.geofabrik.de/north-america/us/new-hampshire-latest.osm.pbf|-180|-85|180|85
+      - us_new_jersey|source-pbf/us/new-jersey-latest.osm.pbf|https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf|-180|-85|180|85
+      - us_new_mexico|source-pbf/us/new-mexico-latest.osm.pbf|https://download.geofabrik.de/north-america/us/new-mexico-latest.osm.pbf|-180|-85|180|85
+      - us_new_york|source-pbf/us/new-york-latest.osm.pbf|https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf|-180|-85|180|85
+      - us_north_carolina|source-pbf/us/north-carolina-latest.osm.pbf|https://download.geofabrik.de/north-america/us/north-carolina-latest.osm.pbf|-180|-85|180|85
+      - us_north_dakota|source-pbf/us/north-dakota-latest.osm.pbf|https://download.geofabrik.de/north-america/us/north-dakota-latest.osm.pbf|-180|-85|180|85
+      - us_ohio|source-pbf/us/ohio-latest.osm.pbf|https://download.geofabrik.de/north-america/us/ohio-latest.osm.pbf|-180|-85|180|85
+      - us_oklahoma|source-pbf/us/oklahoma-latest.osm.pbf|https://download.geofabrik.de/north-america/us/oklahoma-latest.osm.pbf|-180|-85|180|85
+      - us_oregon|source-pbf/us/oregon-latest.osm.pbf|https://download.geofabrik.de/north-america/us/oregon-latest.osm.pbf|-180|-85|180|85
+      - us_pennsylvania|source-pbf/us/pennsylvania-latest.osm.pbf|https://download.geofabrik.de/north-america/us/pennsylvania-latest.osm.pbf|-180|-85|180|85
+      - us_rhode_island|source-pbf/us/rhode-island-latest.osm.pbf|https://download.geofabrik.de/north-america/us/rhode-island-latest.osm.pbf|-180|-85|180|85
+      - us_south_carolina|source-pbf/us/south-carolina-latest.osm.pbf|https://download.geofabrik.de/north-america/us/south-carolina-latest.osm.pbf|-180|-85|180|85
+      - us_south_dakota|source-pbf/us/south-dakota-latest.osm.pbf|https://download.geofabrik.de/north-america/us/south-dakota-latest.osm.pbf|-180|-85|180|85
+      - us_tennessee|source-pbf/us/tennessee-latest.osm.pbf|https://download.geofabrik.de/north-america/us/tennessee-latest.osm.pbf|-180|-85|180|85
+      - us_texas|source-pbf/us/texas-latest.osm.pbf|https://download.geofabrik.de/north-america/us/texas-latest.osm.pbf|-180|-85|180|85
+      - us_utah|source-pbf/us/utah-latest.osm.pbf|https://download.geofabrik.de/north-america/us/utah-latest.osm.pbf|-180|-85|180|85
+      - us_vermont|source-pbf/us/vermont-latest.osm.pbf|https://download.geofabrik.de/north-america/us/vermont-latest.osm.pbf|-180|-85|180|85
+      - us_virginia|source-pbf/us/virginia-latest.osm.pbf|https://download.geofabrik.de/north-america/us/virginia-latest.osm.pbf|-180|-85|180|85
+      - us_washington|source-pbf/us/washington-latest.osm.pbf|https://download.geofabrik.de/north-america/us/washington-latest.osm.pbf|-180|-85|180|85
+      - us_west_virginia|source-pbf/us/west-virginia-latest.osm.pbf|https://download.geofabrik.de/north-america/us/west-virginia-latest.osm.pbf|-180|-85|180|85
+      - us_wisconsin|source-pbf/us/wisconsin-latest.osm.pbf|https://download.geofabrik.de/north-america/us/wisconsin-latest.osm.pbf|-180|-85|180|85
+      - us_wyoming|source-pbf/us/wyoming-latest.osm.pbf|https://download.geofabrik.de/north-america/us/wyoming-latest.osm.pbf|-180|-85|180|85
+      - ca_alberta|source-pbf/canada/alberta-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/alberta-latest.osm.pbf|-180|-85|180|85
+      - ca_british_columbia|source-pbf/canada/british-columbia-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/british-columbia-latest.osm.pbf|-180|-85|180|85
+      - ca_manitoba|source-pbf/canada/manitoba-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/manitoba-latest.osm.pbf|-180|-85|180|85
+      - ca_new_brunswick|source-pbf/canada/new-brunswick-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/new-brunswick-latest.osm.pbf|-180|-85|180|85
+      - ca_newfoundland_and_labrador|source-pbf/canada/newfoundland-and-labrador-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/newfoundland-and-labrador-latest.osm.pbf|-180|-85|180|85
+      - ca_northwest_territories|source-pbf/canada/northwest-territories-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/northwest-territories-latest.osm.pbf|-180|-85|180|85
+      - ca_nova_scotia|source-pbf/canada/nova-scotia-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/nova-scotia-latest.osm.pbf|-180|-85|180|85
+      - ca_nunavut|source-pbf/canada/nunavut-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/nunavut-latest.osm.pbf|-180|-85|180|85
+      - ca_ontario|source-pbf/canada/ontario-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/ontario-latest.osm.pbf|-180|-85|180|85
+      - ca_prince_edward_island|source-pbf/canada/prince-edward-island-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/prince-edward-island-latest.osm.pbf|-180|-85|180|85
+      - ca_quebec|source-pbf/canada/quebec-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/quebec-latest.osm.pbf|-180|-85|180|85
+      - ca_saskatchewan|source-pbf/canada/saskatchewan-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/saskatchewan-latest.osm.pbf|-180|-85|180|85
+      - ca_yukon|source-pbf/canada/yukon-latest.osm.pbf|https://download.geofabrik.de/north-america/canada/yukon-latest.osm.pbf|-180|-85|180|85
+    seam_tiles:
+      - north_america|10|298|387
+      - north_america|10|305|380
+      - north_america|10|162|392
